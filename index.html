@@ -32,7 +32,7 @@
           <form action="/action_page.php">
             <label for="weatherInput"></label>
             <input type="text" id="weatherInput" placeholder="Search.." name="search">
-            <button type="submit">Submit</button>
+            <button type="submit" id="submitBtn">Submit</button>
         </div>
       </div>
     </div>
@@ -47,9 +47,7 @@
           <div class="container-fluid">
             <h1>Search reults</h1>
             <div class="row">
-              <div class="col-lg-3" style="background-color:yellow;">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet, a enim, neque asperiores harum pariatur
-                  eos, modi illo nulla veritatis provident esse nihil sunt accusamus cum? Eius assumenda nisi totam?</p>
+              <div class="col-lg-3" id="weatherView" style="background-color:yellow;">
               </div>
               <div class="col-lg-6" style="background-color:grey;">
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui odit distinctio sed vel vitae molestiae numquam
@@ -73,24 +71,29 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
 
-var city = $("weatherInput").val();  
+$("#submitBtn").on("click", function(event){
+
+event.preventDefault();
+
+var city = $("#weatherInput").val();  
 // var queryURL = 'http://api.wunderground.com/api/397251ff2fe9bd69/conditions/q/CA/San_Francisco.json'
-var queryURL = 'http://api.wunderground.com/api/397251ff2fe9bd69/conditions/q/CA/'+city+'json'
+var queryURL = "http://api.wunderground.com/api/397251ff2fe9bd69/conditions/q/"+city+".json";
 // var city = charlotte;
 $.ajax({
 url: queryURL,
 method: "GET"
 }).done(function(response) {
-
+  $("#weatherView").text(JSON.stringify(response));
 })
 
-$.ajax({
-      url: "http://www.omdbapi.com/?i=tt3896198&apikey=869ed286",
-      method: "GET"
-    }).done(function(response) {
-      // console.log(response);
-      $("#weatherInput").text(JSON.stringify(response));
-    });
+// $.ajax({
+//       url: "http://www.omdbapi.com/?i=tt3896198&apikey=869ed286",
+//       method: "GET"
+//     }).done(function(response) {
+//       // console.log(response);
+//       $("#weatherInput").text(JSON.stringify(response));
+//     });
 
 
+})
 </script>
