@@ -47,9 +47,9 @@
 // console.log(queryURL)
 // })
 
-var queryURL = 'http://api.wunderground.com/api/397251ff2fe9bd69/conditions/q/CA/San_Francisco.json'
-
-
+// var queryURL = 'http://api.wunderground.com/api/397251ff2fe9bd69/conditions/q/CA/San_Francisco.json'
+var queryURL = 'http://api.wunderground.com/api/397251ff2fe9bd69/conditions/q/CA/'+city+'json'
+var city = charlotte;
 $.ajax({
 url: queryURL,
 method: "GET"
