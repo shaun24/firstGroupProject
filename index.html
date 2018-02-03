@@ -47,11 +47,11 @@
           <div class="container-fluid">
             <h1>Search results</h1>
             <div class="row">
-              <div class="col-lg-3" id="weatherView" style="background-color:yellow;">
+              <div class="col-lg-3" id="weatherView" id="weatherView2" style="background-color:yellow;">
               </div>
               <div class="col-lg-6" id=cityName style="background-color:grey;">
               </div>
-              <div class="col-lg-3" style="background-color:green;">
+              <div class="col-lg-3" id="weatherCity"style="background-color:green;">
               </div>
             </div>
           </div>
@@ -74,14 +74,15 @@ var city = $("#weatherInput").val();
 // var queryURL = 'http://api.wunderground.com/api/397251ff2fe9bd69/conditions/q/CA/San_Francisco.json'
 var queryURL = "http://api.wunderground.com/api/397251ff2fe9bd69/conditions/q/"+city+".json";
 var tempf =['current_observation'];
-// var city = charlotte;
+
 $.ajax({
 url: queryURL,
 method: "GET"
 }).done(function(response) {
   $("#weatherView").text(JSON.stringify(response.current_observation.weather));
+  $("#cityName").text(JSON.stringify(response.current_observation.temp_f));
 console.log(response);
-console.log(response.estimated);
+console.log(response.current_observation.temp_f);
 
 })
 
