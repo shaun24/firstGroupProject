@@ -25,7 +25,7 @@
   <div class="container">
     <div class="panel panel-primary">
       <div class="panel-heading">
-        <h3 class="panel-title">Search Feild</h3>
+        <h3 class="panel-title">Search Field</h3>
       </div>
       <div class="panel-body">
         <div class="search-container">
@@ -69,3 +69,27 @@
 </body>
 
 </html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+var queryURL = 'http://api.wunderground.com/api/397251ff2fe9bd69/conditions/q/CA/San_Francisco.json'
+// var queryURL = 'http://api.wunderground.com/api/397251ff2fe9bd69/conditions/q/CA/'+city+'json'
+// var city = charlotte;
+$.ajax({
+url: queryURL,
+method: "GET"
+}).done(function(response) {
+console.log(queryURL);
+console.log(response);
+console.log(response.current_observation);
+document.write(response.current_observation.display_location);
+})
+
+$.ajax({
+      url: "https://www.omdbapi.com/?t=god+father&y=&plot=short&apikey=trilogy",
+      method: "GET"
+    }).done(function(response) {
+      console.log(response);
+    });
+
+
+</script>
