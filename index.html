@@ -25,12 +25,13 @@
   <div class="container">
     <div class="panel panel-primary">
       <div class="panel-heading">
-        <h3 class="panel-title">Search Feild</h3>
+        <h3 class="panel-title">Search Field</h3>
       </div>
       <div class="panel-body">
         <div class="search-container">
           <form action="/action_page.php">
-            <input type="text" placeholder="Search.." name="search">
+            <label for="weatherInput"></label>
+            <input type="text" id="weatherInput" placeholder="Search.." name="search">
             <button type="submit">Submit</button>
         </div>
       </div>
@@ -69,3 +70,27 @@
 </body>
 
 </html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+
+var city = $("weatherInput").val();  
+// var queryURL = 'http://api.wunderground.com/api/397251ff2fe9bd69/conditions/q/CA/San_Francisco.json'
+var queryURL = 'http://api.wunderground.com/api/397251ff2fe9bd69/conditions/q/CA/'+city+'json'
+// var city = charlotte;
+$.ajax({
+url: queryURL,
+method: "GET"
+}).done(function(response) {
+
+})
+
+$.ajax({
+      url: "http://www.omdbapi.com/?i=tt3896198&apikey=869ed286",
+      method: "GET"
+    }).done(function(response) {
+      // console.log(response);
+      $("#weatherInput").text(JSON.stringify(response));
+    });
+
+
+</script>
