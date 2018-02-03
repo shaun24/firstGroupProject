@@ -25,18 +25,42 @@
 //         });
 
 // var token_type = clientID;
-var token = '5dae5d07f878447ebc72fc4c35fae925';
+// var token = '5dae5d07f878447ebc72fc4c35fae925';
+
+// $.ajax({
+// url: 'https://api.spotify.com/v1/search?type=track&q=rick+astley',
+// headers: {
+// type: "application/json",
+// Authorization: token
+// },
+// datatype: 'jsonp',
+// success: function(data) {
+// }
+// });
+// var queryURL = 'http://ws.audioscrobbler.com/2.0/?method=artist.getSimilar&api_key=9ba2699b5028389de04fe2f736d06b26'
+
+
+// $.ajax({
+// url: queryURL,
+// method: "GET"
+// }).done(function(response) {
+// console.log(queryURL)
+// })
+
+var queryURL = 'http://api.wunderground.com/api/397251ff2fe9bd69/conditions/q/CA/San_Francisco.json'
+
 
 $.ajax({
-url: 'https://api.spotify.com/v1/search?type=track&q=rick+astley',
-headers: {
-type: "application/json",
-Authorization: token
-},
-datatype: 'jsonp',
-success: function(data) {
-}
-});
+url: queryURL,
+method: "GET"
+}).done(function(response) {
+console.log(queryURL);
+console.log(response);
+console.log(response.current_observation);
+document.write(response.current_observation.display_location);
+})
+
+
 
 </script>
 </html>
