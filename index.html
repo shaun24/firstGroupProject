@@ -32,9 +32,11 @@
           <form action="/action_page.php">
             <label for="weatherInput"></label>
             <input type="text" id="weatherInput" placeholder="Search.." name="search">
-            <button type="submit">Submit</button>
+            <button type="submit" id="submitBtn">Submit</button>
+            </form>
         </div>
       </div>
+    </div>
     </div>
 
 
@@ -45,20 +47,13 @@
         <div class="panel-heading">Results</div>
         <div class="panel-body">
           <div class="container-fluid">
-            <h1>Search reults</h1>
+            <h1>Search results</h1>
             <div class="row">
-              <div class="col-lg-3" style="background-color:yellow;">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet, a enim, neque asperiores harum pariatur
-                  eos, modi illo nulla veritatis provident esse nihil sunt accusamus cum? Eius assumenda nisi totam?</p>
+              <div class="col-lg-3" id="weatherView" style="background-color:yellow;">
               </div>
-              <div class="col-lg-6" style="background-color:grey;">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui odit distinctio sed vel vitae molestiae numquam
-                  adipisci ipsum facere voluptatibus in ipsa praesentium esse, nesciunt earum tenetur mollitia iusto vero?</p>
-
+              <div class="col-lg-6" id="tempView" style="background-color:grey;">
               </div>
-              <div class="col-lg-3" style="background-color:green;">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere at laboriosam sed laborum fuga eos placeat
-                  ullam veritatis deleniti, porro iste dolores quod id eius consequatur temporibus, perferendis ducimus doloribus?</p>
+              <div class="col-lg-3" id="movieLog"style="background-color:green;">
               </div>
             </div>
           </div>
@@ -67,30 +62,78 @@
     </div>
 
 
-</body>
 
-</html>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
 
-var city = $("weatherInput").val();  
-// var queryURL = 'http://api.wunderground.com/api/397251ff2fe9bd69/conditions/q/CA/San_Francisco.json'
-var queryURL = 'http://api.wunderground.com/api/397251ff2fe9bd69/conditions/q/CA/'+city+'json'
-// var city = charlotte;
+$("#submitBtn").on("click", function(event){
+
+event.preventDefault();
+
+var city = $("#weatherInput").val();  
+var queryURL = "http://api.wunderground.com/api/397251ff2fe9bd69/conditions/q/"+city+".json";
+var tempf =['current_observation'];
+var weatherView= $("#weatherView");
+var weatherData = $("#weatherView").val();
+var queryURL2= "http://www.omdbapi.com/?i=tt3896198&s="+weatherData+"&apikey=869ed286";
+
 $.ajax({
 url: queryURL,
 method: "GET"
 }).done(function(response) {
+  var typeOfWeather = JSON.stringify(response.current_observation.weather);
+  weatherView.text(JSON.stringify(typeOfWeather));
+  $("#tempView").text(JSON.stringify(response.current_observation.temp_f));
+console.log(response);
+console.log(response.current_observation.temp_f);
+
+
+
+$.ajax({
+    url: queryURL2,
+    method: "GET"
+    }).then(function(response) {
+      console.log(response);
+      $("#weatherInput").text(JSON.stringify(response));
+      // $("#movieLog").text(JSON.stringify(response.Title + response.Rated));
+      console.log(weatherData);
+      console.log(queryURL2)
+
+      var movieDiv = $("<div class='movie'>")
+      var title = response.Title;
+      var titleDOM = $("<p>").text("Title: " + title);
+      movieDiv.append(titleDOM);
+      
+      var rating = response.Rated;
+      var ratingDOM = $("<p>").text("Rating: " +rating);
+
+      var imgURL =response.Poster;
+      var poster = $("<img>").attr("src", imgURL);
+
+      movieDiv.append(poster);
+
+      $("#movieLog").prepend(movieDiv);
+
+    });
 
 })
 
-$.ajax({
-      url: "http://www.omdbapi.com/?i=tt3896198&apikey=869ed286",
-      method: "GET"
-    }).done(function(response) {
-      // console.log(response);
-      $("#weatherInput").text(JSON.stringify(response));
-    });
+// var weatherData = $("#weatherView").val();
+// var queryURL2= "http://www.omdbapi.com/?i=tt3896198&s="+weatherData+"&apikey=869ed286";
 
+// $.ajax({
+//     url: queryURL2,
+//     method: "GET"
+//     }).done(function(response) {
+//       console.log(response);
+//       $("#weatherInput").text(JSON.stringify(response));
+//       $("#movieLog").text(JSON.stringify(response));
+//       console.log(weatherData);
+//     });
 
+// console.log(queryURL2);
+})
 </script>
+
+</body>
+</html>
