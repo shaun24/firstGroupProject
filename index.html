@@ -33,8 +33,10 @@
             <label for="weatherInput"></label>
             <input type="text" id="weatherInput" placeholder="Search.." name="search">
             <button type="submit" id="submitBtn">Submit</button>
+            </form>
         </div>
       </div>
+    </div>
     </div>
 
 
@@ -47,11 +49,11 @@
           <div class="container-fluid">
             <h1>Search results</h1>
             <div class="row">
-              <div class="col-lg-3" id="weatherView" id="weatherView2" style="background-color:yellow;">
+              <div class="col-lg-3" id="weatherView" style="background-color:yellow;">
               </div>
-              <div class="col-lg-6" id=cityName style="background-color:grey;">
+              <div class="col-lg-6" id="tempView" style="background-color:grey;">
               </div>
-              <div class="col-lg-3" id="weatherCity"style="background-color:green;">
+              <div class="col-lg-3" id="movieLog"style="background-color:green;">
               </div>
             </div>
           </div>
@@ -60,9 +62,7 @@
     </div>
 
 
-</body>
 
-</html>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
 
@@ -71,29 +71,69 @@ $("#submitBtn").on("click", function(event){
 event.preventDefault();
 
 var city = $("#weatherInput").val();  
-// var queryURL = 'http://api.wunderground.com/api/397251ff2fe9bd69/conditions/q/CA/San_Francisco.json'
 var queryURL = "http://api.wunderground.com/api/397251ff2fe9bd69/conditions/q/"+city+".json";
 var tempf =['current_observation'];
+var weatherView= $("#weatherView");
+var weatherData = $("#weatherView").val();
+var queryURL2= "http://www.omdbapi.com/?i=tt3896198&s="+weatherData+"&apikey=869ed286";
 
 $.ajax({
 url: queryURL,
 method: "GET"
 }).done(function(response) {
-  $("#weatherView").text(JSON.stringify(response.current_observation.weather));
-  $("#cityName").text(JSON.stringify(response.current_observation.temp_f));
+  var typeOfWeather = JSON.stringify(response.current_observation.weather);
+  weatherView.text(JSON.stringify(typeOfWeather));
+  $("#tempView").text(JSON.stringify(response.current_observation.temp_f));
 console.log(response);
 console.log(response.current_observation.temp_f);
 
+
+
+$.ajax({
+    url: queryURL2,
+    method: "GET"
+    }).then(function(response) {
+      console.log(response);
+      $("#weatherInput").text(JSON.stringify(response));
+      // $("#movieLog").text(JSON.stringify(response.Title + response.Rated));
+      console.log(weatherData);
+      console.log(queryURL2)
+
+      var movieDiv = $("<div class='movie'>")
+      var title = response.Title;
+      var titleDOM = $("<p>").text("Title: " + title);
+      movieDiv.append(titleDOM);
+      
+      var rating = response.Rated;
+      var ratingDOM = $("<p>").text("Rating: " +rating);
+
+      var imgURL =response.Poster;
+      var poster = $("<img>").attr("src", imgURL);
+
+      movieDiv.append(poster);
+
+      $("#movieLog").prepend(movieDiv);
+
+    });
+
 })
+
+// var weatherData = $("#weatherView").val();
+// var queryURL2= "http://www.omdbapi.com/?i=tt3896198&s="+weatherData+"&apikey=869ed286";
 
 // $.ajax({
-//       url: "http://www.omdbapi.com/?i=tt3896198&apikey=869ed286",
-//       method: "GET"
+//     url: queryURL2,
+//     method: "GET"
 //     }).done(function(response) {
-//       // console.log(response);
+//       console.log(response);
 //       $("#weatherInput").text(JSON.stringify(response));
+//       $("#movieLog").text(JSON.stringify(response));
+//       console.log(weatherData);
 //     });
 
-
+// console.log(queryURL2);
 })
 </script>
+
+</body>
+</html>
