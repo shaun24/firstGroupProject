@@ -66,11 +66,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
 
-var wordBank = [{
-  clear: ['sunny'],
-  snow : ['light snow','snowy'],
-  cloudy: ['Scattered Clouds', 'Overcast']
-}];
+// var wordBank = [{
+//   clear: ['sunny'],
+//   snow : ['light snow','snowy'],
+//   cloudy: ['Scattered Clouds', 'Overcast']
+// }];
 
 // var weatherWord = {clear,snow,cloudy}; 
 
@@ -91,6 +91,7 @@ $.ajax({
 url: queryURL,
 method: "GET"
 }).done(function(response) {
+  $("#weatherInput").val('');
   var typeOfWeather = response.current_observation.weather;
   weatherView.text(JSON.stringify(typeOfWeather));
   $("#tempView").text(JSON.stringify(response.current_observation.temp_f));
