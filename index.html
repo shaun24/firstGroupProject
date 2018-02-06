@@ -109,8 +109,13 @@ function movieAPI (weatherType) {
     url: queryURL2,
     method: "GET"
     }).then(function(response) {
-      for (var i=0; i < 2; i++) {
-        
+   
+      
+        if (response.Response == "False") {
+        alert("PICK BETTER WEATHER!");
+      } else {
+
+        for (var i=0; i < 2; i++) {
       console.log(queryURL2);
       console.log(response);
       $("#weatherInput").text(JSON.stringify(response));
@@ -125,12 +130,11 @@ function movieAPI (weatherType) {
       var ratingDOM = $("<p>").text("Rating: " +year);
       var imgURL =response.Search[i].Poster;
       //if statement
-      if (response == "False") {
-        document.write("HELLO WORLD");
-      } 
+
       var poster = $("<img>").attr("src", imgURL);
       movieDiv.append(poster);
       $("#movieLog").prepend(movieDiv);
+      }
       };
     });
 } 
@@ -155,6 +159,7 @@ function movieAPI (weatherType) {
 //       console.log(weatherData);
 //     });
 // console.log(queryURL2);
+
 })
 </script>
 
