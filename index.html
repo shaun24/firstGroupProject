@@ -39,6 +39,17 @@
     </div>
     </div>
 
+ <div class="container">
+   <div class="panel panel-primary">
+     <h3 class="panel-title">Watch Me!</h3>
+   </div>
+   <!-- <div class="panel-body"> -->
+     <!-- <div class="search-container"> -->
+     <!-- <div id="player"> -->
+     <!-- </div> -->
+     <!-- </div> -->
+   <!-- </div> -->
+ </div>
 
 
 
@@ -60,25 +71,25 @@
         </div>
       </div>
     </div>
+    
 
-
-
+    <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
+  
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBkDX4kVZnLFXwm7tWtPcRdIgmPXNeUBY0",
+    authDomain: "something-new-b6c74.firebaseapp.com",
+    databaseURL: "https://something-new-b6c74.firebaseio.com",
+    projectId: "something-new-b6c74",
+    storageBucket: "something-new-b6c74.appspot.com",
+    messagingSenderId: "298405897708"
+  };
+  firebase.initializeApp(config);
 
-// var wordBank = [{
-//   clear: ['sunny'],
-//   snow : ['light snow','snowy'],
-//   cloudy: ['Scattered Clouds', 'Overcast']
-// }];
 
-// var weatherWord = {clear,snow,cloudy}; 
 
-// var searchTerm = "";
-// var x;
-// for (x in person) {
-//     text += person[x] + " ";
-// }
 
 $("#submitBtn").on("click", function(event){
 event.preventDefault();
@@ -139,6 +150,8 @@ function movieAPI (weatherType) {
       };
     });
 } 
+
+
 
 //clearing the div with each search. 
 //chaninging search from weather posters NA 
