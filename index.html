@@ -106,8 +106,12 @@ function movieAPI (weatherType) {
     }).then(function(response) {
    
       
-        if (response.Response == "False") {
-        alert("PICK BETTER WEATHER!");
+        if (response.Response === "False") {
+        // alert("PICK BETTER WEATHER!");
+        
+        var rankerIMG = '<a href="https://www.ranker.com"><img id="ranker" src="ranker-squarelogo.png"></a>'
+
+        $("#movieLog").prepend(rankerIMG)
       } else {
         for (var i=0; i < 2; i++) {
       console.log(queryURL2);
@@ -123,7 +127,6 @@ function movieAPI (weatherType) {
       var year = response.Search[i].Year;
       var ratingDOM = $("<p>").text("Rating: " +year);
       var imgURL =response.Search[i].Poster;
-      //if statement
       var poster = $("<img>").attr("src", imgURL);
       movieDiv.append(poster);
       $("#movieLog").prepend(movieDiv);
