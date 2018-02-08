@@ -1,0 +1,11 @@
+body{
+	background: url("../images/background.jpg");
+	background-size: 100%;
+    background-repeat: no-repeat;
+    color: green;
+}
+
+#weatherInput::-webkit-input-placeholder {
+    color: blue;
+    font-weight: bold;
+}
