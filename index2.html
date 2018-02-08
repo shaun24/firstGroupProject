@@ -39,6 +39,17 @@
     </div>
     </div>
 
+ <div class="container">
+   <div class="panel panel-primary">
+     <h3 class="panel-title">Watch Me!</h3>
+   </div>
+   <!-- <div class="panel-body"> -->
+     <!-- <div class="search-container"> -->
+     <!-- <div id="player"> -->
+     <!-- </div> -->
+     <!-- </div> -->
+   <!-- </div> -->
+ </div>
 
 
 
@@ -60,22 +71,26 @@
         </div>
       </div>
     </div>
+    
 
-
-
+    <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
-// var wordBank = [{
-//   clear: ['sunny'],
-//   snow : ['light snow','snowy'],
-//   cloudy: ['Scattered Clouds', 'Overcast']
-// }];
-// var weatherWord = {clear,snow,cloudy}; 
-// var searchTerm = "";
-// var x;
-// for (x in person) {
-//     text += person[x] + " ";
-// }
+  
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBkDX4kVZnLFXwm7tWtPcRdIgmPXNeUBY0",
+    authDomain: "something-new-b6c74.firebaseapp.com",
+    databaseURL: "https://something-new-b6c74.firebaseio.com",
+    projectId: "something-new-b6c74",
+    storageBucket: "something-new-b6c74.appspot.com",
+    messagingSenderId: "298405897708"
+  };
+  firebase.initializeApp(config);
+
+
+
+
 $("#submitBtn").on("click", function(event){
 event.preventDefault();
 var city = $("#weatherInput").val();  
@@ -96,7 +111,9 @@ method: "GET"
 console.log(response);
 console.log(response.current_observation.temp_f);
 movieAPI(weatherData);
+
 })
+
 function movieAPI (weatherType) {
   console.log(weatherType);
   var queryURL2= "http://www.omdbapi.com/?i=tt3896198&s="+weatherType+"&apikey=869ed286"; //poster NA
@@ -109,6 +126,7 @@ function movieAPI (weatherType) {
         if (response.Response == "False") {
         alert("PICK BETTER WEATHER!");
       } else {
+
         for (var i=0; i < 2; i++) {
       console.log(queryURL2);
       console.log(response);
@@ -124,6 +142,7 @@ function movieAPI (weatherType) {
       var ratingDOM = $("<p>").text("Rating: " +year);
       var imgURL =response.Search[i].Poster;
       //if statement
+
       var poster = $("<img>").attr("src", imgURL);
       movieDiv.append(poster);
       $("#movieLog").prepend(movieDiv);
@@ -131,11 +150,17 @@ function movieAPI (weatherType) {
       };
     });
 } 
+
+
+
 //clearing the div with each search. 
 //chaninging search from weather posters NA 
   // if poster = NA 
   // then replace with placeholder or image or alter image. 
   // extra: log in, favortie, genre. etc. 
+
+
+
 // var weatherData = $("#weatherView").val();
 // var queryURL2= "http://www.omdbapi.com/?i=tt3896198&s="+weatherData+"&apikey=869ed286";
 // $.ajax({
@@ -148,6 +173,7 @@ function movieAPI (weatherType) {
 //       console.log(weatherData);
 //     });
 // console.log(queryURL2);
+
 })
 </script>
 
