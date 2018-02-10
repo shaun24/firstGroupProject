@@ -2,10 +2,27 @@ body{
 	background: url("../images/background.jpg");
 	background-size: 100%;
     background-repeat: no-repeat;
-    color: green;
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
+    color: black;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
 }
 
 #weatherInput::-webkit-input-placeholder {
     color: blue;
     font-weight: bold;
+    font-size: 30px;
+    background-color: black
 }
+
+  .container1{
+        background: linear-gradient(blue,grey)
+  }
+  
+  .container2{
+    background: linear-gradient(grey,blue)
+}
+ 
