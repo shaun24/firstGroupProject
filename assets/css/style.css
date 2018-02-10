@@ -12,18 +12,16 @@ body{
 }
 
 #weatherInput::-webkit-input-placeholder {
-    color: blue;
     font-weight: bold;
     font-size: 30px;
-    background-color: black
 }
 
   .container1{
-    background: linear-gradient(blue,grey)
+    background: linear-gradient(blue,silver)
   }
   
   .container2{
-    background: linear-gradient(grey,blue)
+    background: linear-gradient(silver,blue)
 }
  
 .page-footer{
