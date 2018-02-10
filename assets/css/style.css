@@ -16,6 +16,11 @@ body{
     font-size: 30px;
 }
 
+.container{
+    font-family: 'Josefin Sans', sans-serif;
+
+}
+
   .container1{
     background: linear-gradient(blue,silver)
   }
