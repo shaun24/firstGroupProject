@@ -1,6 +1,5 @@
-
 //our submit button click funciton
-  $("#submitBtn").on("click", function(event){
+$("#submitBtn").on("click", function(event){
   //to keep the page from refreshing
   event.preventDefault();
   //global variables
