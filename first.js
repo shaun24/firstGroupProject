@@ -1,13 +1,17 @@
-$("#submitBtn").on("click", function(event){
+
+//our submit button click funciton
+  $("#submitBtn").on("click", function(event){
+  //to keep the page from refreshing
   event.preventDefault();
+  //global variables
   var city = $("#weatherInput").val();  
   var queryURL = "http://api.wunderground.com/api/397251ff2fe9bd69/conditions/q/"+city+".json";
   var tempf =['current_observation'];
   var weatherView= $("#weatherView");
   var weatherData = $("#weatherView").val();
-  // line 79
-  //firebase return 
-  database.ref('/lastCity').set({
+
+    //firebase return 
+    database.ref('/lastCity').set({
       lastCity: city
     });
     database.ref('/lastCity').on('value', function(snapshot) {
@@ -15,19 +19,7 @@ $("#submitBtn").on("click", function(event){
     $("#firebaseReturn .grey-text").text(data.lastCity);
     console.log(data.lastCity);
     });
-    //line 154
-    //  <!-- firebase return to page -->
-          // <div class="col l6 s12" id="firebaseReturn">
-          //   <h6 class="white-text"> Last City Search </h6>
-          //   <div class="grey-text text-lighten-4"></div>
-          // </div>
-  $("#submitBtn").on("click", function(event){
-  event.preventDefault();
-  var city = $("#weatherInput").val();  
-  var queryURL = "http://api.wunderground.com/api/397251ff2fe9bd69/conditions/q/"+city+".json";
-  var tempf =['current_observation'];
-  var weatherView= $("#weatherView");
-  var weatherData = $("#weatherView").val();
+  //first ajax call(weather)
   $.ajax({
   url: queryURL,
   method: "GET"
@@ -42,6 +34,8 @@ $("#submitBtn").on("click", function(event){
   console.log(response.current_observation.temp_f);
   movieAPI(weatherData);
   })
+
+  //Second ajax call
   function movieAPI (weatherType) {
     console.log(weatherType);
     var queryURL2= "http://www.omdbapi.com/?i=tt3896198&s="+weatherType+"&apikey=869ed286"; //poster NA
@@ -50,9 +44,9 @@ $("#submitBtn").on("click", function(event){
       method: "GET"
       }).then(function(response) {
      
-      
+        //if OMDBAPI doesn't recognize the weather
           if (response.Response === "False") {
-          // alert("PICK BETTER WEATHER!");
+        
           
           var rankerIMG = '<a href="https://www.ranker.com"><img id="ranker" src="ranker-squarelogo.png"></a>'
           $("#movieLog").prepend(rankerIMG)
@@ -61,7 +55,6 @@ $("#submitBtn").on("click", function(event){
         console.log(queryURL2);
         console.log(response);
         $("#weatherInput").text(JSON.stringify(response));
-       //$("#movieLog").text(JSON.stringify(response.Title + response.Rated));
         console.log(queryURL2);
         var movieDiv = $("<div class='movie'>")
         var title = response.Search[i].Title;
@@ -78,4 +71,4 @@ $("#submitBtn").on("click", function(event){
         };
       });
   } 
-  })})
+  })
