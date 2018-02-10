@@ -1,6 +1,6 @@
 body{
-	background: url("../images/background.jpg");
-	background-size: 100%;
+    background: url("../images/background.jpg");
+    background-size: 100%;
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
@@ -10,17 +10,15 @@ body{
     min-height: 100vh;
     flex-direction: column;
 }
-
 #weatherInput::-webkit-input-placeholder {
     font-weight: bold;
     font-size: 30px;
-}
 
+
+}
 .container{
     font-family: 'Josefin Sans', sans-serif;
-
 }
-
   .container1{
     background: linear-gradient(blue,silver)
   }
@@ -31,4 +29,5 @@ body{
  
 .page-footer{
    background-color: aqua
+
 }
