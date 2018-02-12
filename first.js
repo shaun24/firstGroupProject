@@ -4,7 +4,7 @@ $("#submitBtn").on("click", function(event){
   event.preventDefault();
   //global variables
   var city = $("#weatherInput").val();  
-  var queryURL = "http://api.wunderground.com/api/397251ff2fe9bd69/conditions/q/"+city+".json";
+  var queryURL = "https://api.wunderground.com/api/397251ff2fe9bd69/conditions/q/"+city+".json";
   var tempf =['current_observation'];
   var weatherView= $("#weatherView");
   var weatherData = $("#weatherView").val();
