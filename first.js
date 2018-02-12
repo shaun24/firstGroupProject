@@ -37,7 +37,7 @@ $("#submitBtn").on("click", function(event){
   //Second ajax call
   function movieAPI (weatherType) {
     console.log(weatherType);
-    var queryURL2= "http://www.omdbapi.com/?i=tt3896198&s="+weatherType+"&apikey=869ed286"; //poster NA
+    var queryURL2= "https://www.omdbapi.com/?i=tt3896198&s="+weatherType+"&apikey=869ed286"; //poster NA
     $.ajax({
       url: queryURL2,
       method: "GET"
