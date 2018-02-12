@@ -47,7 +47,7 @@ $("#submitBtn").on("click", function(event){
           if (response.Response === "False") {
         
           
-          var rankerIMG = '<a href="https://www.ranker.com"><img id="ranker" src="ranker-squarelogo.png"></a>'
+          var rankerIMG = '<a href="https://www.ranker.com/list-of/film?ref=mainnav"><img id="ranker" src="ranker-squarelogo.png"></a>'
           $("#movieLog").prepend(rankerIMG)
         } else {
           for (var i=0; i < 2; i++) {
